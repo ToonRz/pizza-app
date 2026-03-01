@@ -1,38 +1,338 @@
-.App {
+/* General Styles */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+/* Navbar */
+.navbar {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: #222;
+  padding: 2px 0;
+}
+
+.navbar-brand {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #ff6471 !important;
+}
+
+.navbar-toggler {
+  border: none;
+  outline: none;
+}
+
+.navbar-nav .nav-link {
+  font-size: 1.2rem;
+  color: white !important;
+  transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #ff6471 !important;
+}
+
+/* เพิ่มเอฟเฟกต์ Parallax */
+.hero-section {
+  position: relative;
+  background-color: #000;
+  height: 100vh; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
+  color: white;
+  overflow: hidden;
+  background-image: url('./assets/pizza_shop.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* เพิ่ม parallax effect */
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+/* เพิ่มแอนิเมชันข้อความ */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.hero-section .hero-content {
+  position: relative;
+  z-index: 2;
+  animation: fade-in 1.5s ease-in-out;
+}
+
+/* เอฟเฟกต์พิมพ์ข้อความ */
+.typing-text::after {
+  content: '|';
+  display: inline-block;
+  animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* ปุ่มเด้งเบาๆ เมื่อโฮเวอร์ */
+.hero-section .btn {
+  background-color: #ff6471;
+  color: white;
+  padding: 12px 30px;
+  border-radius: 5px;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  animation: bounce 2s infinite alternate;
+}
+
+@keyframes bounce {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-5px); }
+}
+
+.hero-section .btn:hover {
+  background-color: #f8a5c2;
+  transform: scale(1.1);
+}
+
+/* Hero Section Overlay */
+.hero-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* เพิ่มการมืดลงให้ภาพพื้นหลัง */
+  z-index: 1;
+}
+
+/* Pizza Card Styling */
+.pizza-card {
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  background-color: white;
+  overflow: hidden;
+  margin-bottom: 20px;
+  border: 1px solid #e0e0e0;
+}
+
+.pizza-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.pizza-card img {
+  border-radius: 15px 15px 0 0;
+  max-height: 200px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.pizza-card:hover img {
+  transform: scale(1.1);
+}
+
+.pizza-card .card-body {
+  padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  text-align: center;
+}
+
+.pizza-card .card-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.pizza-card .card-text {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.pizza-card .text-primary {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #ff6471;
+  margin-bottom: 15px;
+}
+
+.pizza-card .btn {
+  background-color: #ff6471;
+  border: none;
   color: white;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  width: 80%;
+  max-width: 200px;
 }
 
-.App-link {
-  color: #61dafb;
+.pizza-card .btn:hover {
+  background-color: #f8a5c2;
+  transform: scale(1.05);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Cart Section */
+.cart-section {
+  background-color: #f8f9fa;
+  padding: 40px 0;
+  border-top: 2px solid #e0e0e0;
+}
+
+.cart-section h2 {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.cart-section .list-group-item {
+  background-color: #fff;
+  border: none;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cart-section .list-group-item .item-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cart-section .list-group-item .quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cart-section .list-group-item .quantity-controls button {
+  padding: 8px 12px;
+  font-size: 1rem;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  background-color: #ff6471;
+  color: white;
+  border: none;
+}
+
+.cart-section .list-group-item .quantity-controls button:hover {
+  background-color: #f8a5c2;
+  transform: scale(1.1);
+}
+
+.cart-section .list-group-item .quantity-controls button:active {
+  transform: scale(0.9);
+}
+
+.cart-section .list-group-item .item-price {
+  font-weight: bold;
+  margin-left: 20px;
+}
+
+.cart-section .checkout-btn {
+  font-size: 1.5rem;
+  padding: 12px 30px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cart-section .checkout-btn:hover {
+  background-color: #218838;
+}
+
+.cart-section .total-price {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+  margin-top: 30px;
+}
+
+/* Footer */
+.footer {
+  background-color: #333;
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+}
+
+.footer p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 767px) {
+  .hero-section {
+    height: auto;
+    padding: 50px 20px;
   }
-  to {
-    transform: rotate(360deg);
+
+  .hero-section h1 {
+    font-size: 2rem;
+  }
+
+  .hero-section .btn {
+    font-size: 1rem;
+  }
+
+  .navbar-nav {
+    text-align: center;
+  }
+
+  .pizza-card {
+    margin-bottom: 15px;
+  }
+
+  .cart-section .list-group-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cart-section .list-group-item .item-info {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .cart-section .list-group-item .quantity-controls {
+    width: 100%;
+    justify-content: flex-end;
+    margin-top: 10px;
+  }
+
+  .cart-section .list-group-item .item-price {
+    margin-left: 0;
+    margin-top: 10px;
   }
 }
